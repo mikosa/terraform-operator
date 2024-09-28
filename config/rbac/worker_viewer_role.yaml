@@ -1,0 +1,23 @@
+# permissions for end users to view workers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: terraform-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: worker-viewer-role
+rules:
+- apiGroups:
+  - worker.my.domain
+  resources:
+  - workers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - worker.my.domain
+  resources:
+  - workers/status
+  verbs:
+  - get

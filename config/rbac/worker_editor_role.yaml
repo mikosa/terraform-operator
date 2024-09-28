@@ -1,0 +1,27 @@
+# permissions for end users to edit workers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: terraform-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: worker-editor-role
+rules:
+- apiGroups:
+  - worker.my.domain
+  resources:
+  - workers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - worker.my.domain
+  resources:
+  - workers/status
+  verbs:
+  - get
